@@ -127,7 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\canvas.c" />
+    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\jjuggumi.c" />
+    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\keyin.c" />
+    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\sample.c" />
     <ClCompile Include="OVERCLOCK.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\canvas.h" />
+    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\jjuggumi.h" />
+    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\keyin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
