@@ -18,27 +18,27 @@
     <ClCompile Include="OVERCLOCK.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\sample.c">
+    <ClCompile Include="canvas.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\canvas.c">
+    <ClCompile Include="sample.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\jjuggumi.c">
+    <ClCompile Include="jjuggumi.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\jjuggumi_v0\keyin.c">
+    <ClCompile Include="keyin.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\canvas.h">
+    <ClInclude Include="jjuggumi.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\jjuggumi.h">
+    <ClInclude Include="keyin.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\jjuggumi_v0\keyin.h">
+    <ClInclude Include="canvas.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
