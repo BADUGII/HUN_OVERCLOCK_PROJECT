@@ -27,10 +27,8 @@ void sample_init(void) {
 		px[i] = x;
 		py[i] = y;
 		period[i] = randint(100, 500);
-
 		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
 	}
-
 	tick = 0;
 }
 
@@ -85,9 +83,9 @@ void move_tail(int player, int nx, int ny) {
 
 void sample(void) {
 	sample_init();
-
 	system("cls");
 	display();
+	dialog("1234567890123");
 	while (1) {
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
@@ -97,14 +95,12 @@ void sample(void) {
 		else if (key != K_UNDEFINED) {
 			move_manual(key);
 		}
-
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
-			if (tick % period[i] == 0) {
+			if (tick % period[i] == 0) {	
 				move_random(i, -1);
 			}
 		}
-
 		display();
 		Sleep(10);
 		tick += 10;

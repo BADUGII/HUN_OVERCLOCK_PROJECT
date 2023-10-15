@@ -28,10 +28,77 @@ int jjuggumi_init(void) {
 	return 0;
 }
 
+void intro() {
+	system("cls");
+	//5초 안으로 끝내기
+	//Sleep(5000)
+	printf("########################################################################################################################\n");
+	Sleep(150);
+	printf("#     *                                                                                                                #\n");
+	Sleep(150);
+	printf("#          *       *                                      *                        *                        *          #\n");
+	Sleep(150);
+	printf("#                                        *                *              *                      *                *     #\n");
+	Sleep(150);
+	printf("#                       *                                                                           *          *       #\n");
+	Sleep(150);
+	printf("#        *                                       *                           *                                         #\n");
+	Sleep(150);
+	printf("#                                                                                            *               *         #\n");
+	Sleep(150);
+	printf("#    *      #############################       * #########################                                 #          #\n");
+	Sleep(150);
+	printf("#          *       #             #                         #              #                                 #      *   #\n");
+	Sleep(150);
+	printf("#                 #  #         # #             *           #              #          ####################   #          #\n");
+	Sleep(150);
+	printf("#   *           #     #        #   #                       #       *      #          #                  #   #          #\n");
+	Sleep(150);
+	printf("#              #       #     #     #                       #              #          #        *         #   #    *     #\n");
+	Sleep(150);
+	printf("#             #         #    #      #        *            #              #         * #                  #   #          #\n");
+	Sleep(150);
+	printf("#     *      #      *   #  #         #                   #              #            #                  #   #          #\n");
+	Sleep(150);
+	printf("#           #             #          #                  #              #             #                  #   #          #\n");
+	Sleep(150);
+	printf("#       ##################################       ############################        ####################   #          #\n");
+	Sleep(150);
+	printf("#                     *  #                      *             #                                             #     *    #\n");
+	Sleep(150);
+	printf("#  *                     #                      *             #                                             #          #\n");
+	Sleep(150);
+	printf("#         *              #            *                       #                *         *                  #          #\n");
+	Sleep(150);
+	printf("#                 *      #                            *       #         *                           *       #          #\n");
+	Sleep(150);
+	printf("#                        #                                    #                                             #          #\n");
+	Sleep(150);
+	printf("#            *           #               *                    #                        *                               #\n");
+	Sleep(150);
+	printf("#                    *                                                                                     *           #\n");
+	Sleep(150);
+	printf("#    *                                        *              *                         *               *    *          #\n");
+	Sleep(150);
+	printf("#                               *                                       *                                              #\n");
+	Sleep(150);
+	printf("#      *                                                                                                               #\n");
+	Sleep(150);
+	printf("#                      *                                            *              *               *           *       #\n");
+	Sleep(150);
+	printf("#    *                                                                                                *                #\n");
+	Sleep(150);
+	printf("#                                           *                                                                          #\n");
+	Sleep(150);
+	printf("########################################################################################################################");
+	Sleep(500);
+}
+
 int main(void) {
+	intro();
 	jjuggumi_init();
 	sample();
-	//mugunghwa();
+	//mugunghwa();	
 	//nightgame();
 	//juldarigi();
 	//jebi();
