@@ -130,12 +130,16 @@
     <ClCompile Include="canvas.c" />
     <ClCompile Include="jjuggumi.c" />
     <ClCompile Include="keyin.c" />
+    <ClCompile Include="mugunghwa.c" />
     <ClCompile Include="sample.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas.h" />
     <ClInclude Include="jjuggumi.h" />
     <ClInclude Include="keyin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="jjuggumi.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
