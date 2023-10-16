@@ -17,22 +17,14 @@ int x = 2, y = 34;
 int dir = 2;
 char map[9][36], front[9][36];
 
-typedef
-struct {
-    int rm;
-    int rnx, rny;
-    int rx, ry;
-}PLAYER;
+int rnx, rny;
+int rx = 3, ry = 34;
+int rdir = 2;
 
-PLAYER player[4] = { 0 };
+int rpmove = 0;
 
 int main(void) {
     srand((unsigned int)time(NULL));
-
-    for (int i = 0; i < 4; i++) {
-        player[i].rm = rand() % 10 + 1;
-    }
-
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 36; j++) {
             if (i == 0 || i == 8 || j == 0 || j == 35)
@@ -48,6 +40,38 @@ int main(void) {
     map[6][34] = '4';
 
     while (1) {
+        int p1rm = rand() % 10 + 1;
+
+        if (p1rm == 8) {
+            rpmove = 2;
+        }
+        else if (p1rm == 9) {
+            rpmove = 3;
+        }
+        else if (p1rm == 10) {
+            rpmove = 4;
+        }
+        else {
+            rpmove = 1;
+        }
+
+        switch (rpmove) {
+        case 1:
+            rdir = 2;
+            rmove();
+            break;
+        case 2:
+            rdir = 0;
+            rmove();
+            break;
+        case 3:
+            rdir = 1;
+            rmove();
+            break;
+        case 4:
+            break;
+        }
+
         if (_kbhit()) {
             int key = _getch();
             switch (key) {
@@ -97,7 +121,7 @@ void move(void) {
     nx = x + dx[dir];
     ny = y + dy[dir];
     if (nx > 0 && nx < 8 &&
-        ny > 0 && ny < 35) {
+        ny > 0 && ny < 35 && (nx != rnx && ny != rny)) {
         map[x][y] = ' ';
         x = nx; y = ny;
         map[x][y] = '0';
@@ -105,12 +129,14 @@ void move(void) {
 }
 
 void rmove(void) {
-    rnx = rx + dx[dir];
-    rny = ry + dy[dir];
-    if (rnx > 0 && rnx < 8 &&
-        rny > 0 && rny < 35) {
-        map[rx][ry] = ' ';
-        rx = rnx; ry = rny;
-        map[rx][ry] = '0';
+    if (tick % 1000 == 0) {
+        rnx = rx + dx[rdir];
+        rny = ry + dy[rdir];
+        if (rnx > 0 && rnx < 8 &&
+            rny > 0 && rny < 35) {
+            map[rx][ry] = ' ';
+            rx = rnx; ry = rny;
+            map[rx][ry] = '1';
+        }
     }
 }
