@@ -16,7 +16,7 @@ void move_tail(int i, int nx, int ny);
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 
 void mugunghwa_init(void) {
-	map_init(9, 36);
+	map_init(11, 40);
 	int x, y;
 	for (int i = 0; i < n_player; i++) {
 		// 같은 자리가 나오면 다시 생성
@@ -60,13 +60,31 @@ void move_manual(key_t key) {
 // 0 <= dir < 4가 아니면 랜덤
 void move_random(int player, int dir) {
 	int p = player;  // 이름이 길어서...
-	int nx, ny;  // 움직여서 다음에 놓일 자리
+	int nx = 0, ny = 0;  // 움직여서 다음에 놓일 자리
+	int random_xy = 0;
+	int percent = 0;
 
-	// 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
-
+	// 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)
 	do {
-		nx = px[p] + randint(-1, 1);
-		ny = py[p] + randint(-1, 1);
+		percent = randint(1, 10);
+		if (1 <= percent && percent <= 7) {
+			random_xy = 1;
+		}
+		else if (percent == 8) {
+			random_xy = 2;
+		}
+		else if (percent == 9) {
+			random_xy = 3;
+		}
+		else if (percent == 10) {
+			random_xy = 4;
+		}
+		switch (random_xy) {
+		case 1: nx = px[p] + 0, ny = py[p] + -1; break; //앞으로
+		case 2: nx = px[p] + 0, ny = py[p] + 0; break; //제자리
+		case 3: nx = px[p] + -1, ny = py[p] + 0; break; //위로
+		case 4: nx = px[p] + 1, ny = py[p] + 0; break; //아래로
+		}
 	} while (!placable(nx, ny));
 
 	move_tail(p, nx, ny);
