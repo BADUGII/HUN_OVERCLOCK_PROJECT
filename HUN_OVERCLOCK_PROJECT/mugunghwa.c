@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <Windows.h>
 #include <stdlib.h>
 #include <time.h>
@@ -40,7 +40,7 @@ int rpmove2 = 0;
 int rpmove3 = 0;
 int rpmove4 = 0;
 
-int main(void) {
+int mugunghwa() {
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 36; j++) {
@@ -289,3 +289,21 @@ void rmove4(void) {
 		}
 	}
 }
+
+void mugunghwa_init(void) {
+	map_init(15, 40);
+	int x, y;
+	for (int i = 0; i < n_player; i++) {
+		// 같은 자리가 나오면 다시 생성
+		do {
+			x = randint(1, N_ROW - 2);
+			y = randint(1, N_COL - 2);
+		} while (!placable(x, y));
+		px[i] = x;
+		py[i] = y;
+		period[i] = randint(100, 500);
+		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
+	}
+	tick = 0;
+}
+*/

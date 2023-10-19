@@ -8,15 +8,15 @@
 #define DIR_LEFT	2
 #define DIR_RIGHT	3
 
-void sample_init(void);
+void mugunghwa_init(void);
 void move_manual(key_t key);
 void move_random(int i, int dir);
 void move_tail(int i, int nx, int ny);
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 
-void sample_init(void) {
-	map_init(15, 40);
+void mugunghwa_init(void) {
+	map_init(9, 36);
 	int x, y;
 	for (int i = 0; i < n_player; i++) {
 		// 같은 자리가 나오면 다시 생성
@@ -82,10 +82,9 @@ void move_tail(int player, int nx, int ny) {
 }
 
 void sample(void) {
-	sample_init();
-	system("cls");
+	mugunghwa_init();
 	display();
-	dialog("1234567890123");
+	dialog("20232367");
 	while (1) {
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
@@ -98,7 +97,7 @@ void sample(void) {
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {	
-				move_random(i, -1);
+				move_random(i, -1); //이 부분 move_manual() 부분으로 바꾸고 ()괄호 안에 들어가는 함수를 따로 만드셈 랜덤으로 10퍼센트.
 			}
 		}
 		display();
