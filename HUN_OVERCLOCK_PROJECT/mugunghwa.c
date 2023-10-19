@@ -12,6 +12,7 @@ void mugunghwa_init(void);
 void move_manual(key_t key);
 void move_random(int i, int dir);
 void move_tail(int i, int nx, int ny);
+void camera(void);
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 
@@ -22,7 +23,7 @@ void mugunghwa_init(void) {
 		// 같은 자리가 나오면 다시 생성
 		do {
 			x = randint(1, N_ROW - 2);
-			y = randint(1, N_COL - 2);
+			y = N_COL - 2;
 		} while (!placable(x, y));
 		px[i] = x;
 		py[i] = y;
@@ -97,6 +98,10 @@ void move_tail(int player, int nx, int ny) {
 	back_buf[px[p]][py[p]] = ' ';
 	px[p] = nx;
 	py[p] = ny;
+}
+
+void camera(void) {
+
 }
 
 void sample(void) {
