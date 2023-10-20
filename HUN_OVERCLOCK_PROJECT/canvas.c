@@ -99,13 +99,13 @@ void dialog(char message[]) {
 	//dialog에서 받아온 char 값을 가운데 정렬 시켜주는 코드
 	//입력으로 13자리가 넘으면 안됨.
 	//예시) dialog("1234567890123");
-	int gotoxy_x = 3, gotoxty_y = 10;
+	int gotoxy_x = 5, gotoxy_y = 12;
 	for (int message_count = DIALOG_DURATION_SEC; message_count >= 1; message_count--) {
 		int message_length = strlen(message);
 		int spaces = ((16 - message_length) / 2) - 1;
-		gotoxy(gotoxy_x, gotoxty_y);
+		gotoxy(gotoxy_x, gotoxy_y);
 		printf("****************\n");
-		gotoxy(gotoxy_x+1, gotoxty_y);
+		gotoxy(gotoxy_x+1, gotoxy_y);
 		printf("*");
 		printf("%d", message_count);
 		for (int i = 0; i < spaces; i++) {
@@ -122,13 +122,13 @@ void dialog(char message[]) {
 			}
 		}
 		printf("*\n");
-		gotoxy(gotoxy_x + 2, gotoxty_y);
+		gotoxy(gotoxy_x + 2, gotoxy_y);
 		printf("****************\n");
 		Sleep(1000);
 	}
 //준비 메세지 지우는 코드
 	for (int h = 0; h < 3; h++) {
-		gotoxy(gotoxy_x, gotoxty_y);
+		gotoxy(gotoxy_x, gotoxy_y);
 		for (int j = 0; j < 16; j++) {
 			printf(" ");
 		}

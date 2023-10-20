@@ -21,11 +21,10 @@ n_player_trigger = 0;
 int jjuggumi_init(void) {
 	system("cls");
 	srand((unsigned int)time(NULL));
-
-	printf("무궁화 게임 최대 플레이어 : 9\n");
+	printf("무궁화 게임 최대 플레이어 : %d\n", PLAYER_MAX);
 	printf("플레이어 수 : ");
 	scanf_s("%d", &n_player);
-	if (n_player <= 9) {
+	if (n_player <= PLAYER_MAX) { //PLAYER_MAX 값 = 10
 		n_player_trigger = 0;
 	}
 	else {

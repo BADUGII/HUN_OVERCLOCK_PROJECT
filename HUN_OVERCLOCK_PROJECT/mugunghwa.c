@@ -21,10 +21,9 @@ int stop_moving = 0;
 int x, y;
 
 void mugunghwa_init(void) {
-	map_init(11, 40);
-
+	map_init(13, 40);
 	for (int i = 0; i < 3; i++) {
-		x = i+4;
+		x = i+5;
 		y = 1;
 		px[i] = x;
 		py[i] = y;
