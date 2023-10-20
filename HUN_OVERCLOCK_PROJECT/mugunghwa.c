@@ -12,11 +12,11 @@ void mugunghwa_init(void);
 void move_manual(key_t key);
 void move_random(int i, int dir);
 void move_tail(int i, int nx, int ny);
-void camera(void);
+void camera_on(void);
+void camera_off(void);
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 int yh_camera = 0;
-int yh_stop = 0;
 int stop_moving = 0;
 int x, y;
 
@@ -38,7 +38,7 @@ void mugunghwa_init(void) {
 		} while (!placable(x, y));
 		px[i] = x;
 		py[i] = y;
-		period[i] = randint(100, 500);
+		period[i] = randint(30, 50);
 		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
 	}
 	tick = 0;
@@ -111,18 +111,23 @@ void move_tail(int player, int nx, int ny) {
 	py[p] = ny;
 }
 
-void camera(void) {
-	if (tick % 3000 == 0) {
-		yh_stop = 1;
-		for (int i = 0; i < 3; i++) {
-			x = i + 4;
-			y = 1;
-			px[i] = x;
-			py[i] = y;
-			back_buf[px[i]][py[i]] = '@';
-		}
+void camera_on(void) {
+	for (int i = 0; i < 3; i++) {
+		x = i + 5;
+		y = 1;
+		px[i] = x;
+		py[i] = y;
+		back_buf[px[i]][py[i]] = '@';
 	}
-	yh_stop = 0;
+}
+void camera_off(void) {
+	for (int i = 0; i < 3; i++) {
+		x = i + 5;
+		y = 1;
+		px[i] = x;
+		py[i] = y;
+		back_buf[px[i]][py[i]] = '#';
+	}
 }
 
 void mugunghwa(void) {
@@ -130,7 +135,6 @@ void mugunghwa(void) {
 	display();
 	dialog("20232367");
 	while (1) {
-		mugunghwa_ment();
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
 		if (key == K_QUIT) {
@@ -139,24 +143,28 @@ void mugunghwa(void) {
 		else if (key != K_UNDEFINED) {
 			move_manual(key);
 		}
+		stop_tick = 0;
+		mugunghwa_ment();
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
-			if (tick % period[i] == 0) {	
-				//camera();
+			if (tick % period[i] == 0) {
 				if (yh_stop == 1) {
 					stop_moving = randint(1, 10);
 					if (stop_moving == 1) {
 						move_random(i, -1);
-						stop_moving = 0;
+						yh_stop = 0;
 					}
-					if (tick % 3000) {
+					else if (stop_moving != 1) {
+						for (int j = 0; j < 2000; j += 10) {
+							Sleep(10);
+						}
 						stop_moving = 0;
+						yh_stop = 0;
 						break;
 					}
-					yh_stop = 0;
 				}
 				else {
-					move_random(i, -1); //이 부분 move_manual() 부분으로 바꾸고 ()괄호 안에 들어가는 함수를 따로 만드셈 랜덤으로 10퍼센트.
+					move_random(i, -1);
 				}
 			}
 		}

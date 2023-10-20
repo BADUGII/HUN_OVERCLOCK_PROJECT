@@ -12,6 +12,7 @@ void intro();
 void outro_p();
 void outro_np();
 void mugunghwa_ment();
+void mugunghwa_ment_clean();
 
 // (zero-base) row행, col열로 커서 이동
 void gotoxy(int row, int col) {
@@ -67,9 +68,10 @@ void display(void) {
 int mugunghwa_ment_count = 0;
 
 void mugunghwa_ment() {
+	stop_tick = 0;
 	//mugunghwa_ment_flag = 1; //무궁화 멘트 플래그 실행 되고 있을때 움직여도 괜찮음. 플래그 상태 1 / 0일때 움직이면 죽는걸로 고고
 	//printf("%d\n", tick);
-	if (tick % 100 == 0) {
+	if (yh_stop == 0 && tick % 100 == 0) {
 		mugunghwa_ment_count = tick / 100;
 		//printf("%d", mugunghwa_ment_count);
 		if (tick / 100 == 1) {
@@ -115,17 +117,23 @@ void mugunghwa_ment() {
 		else if (tick / 100 == 11) {
 			gotoxy(N_ROW + 1, 30);
 			printf(".");
+			yh_stop = 1;
 		}
-			//Sleep(1000);
-		if (tick >= 1200) {
-			gotoxy(N_ROW + 1, 0);
-			printf("                                      "); //지우기
-			gotoxy(N_ROW + 1, 0);
-			tick = 0;
+
+		if (yh_stop == 0) {
+			mugunghwa_ment_clean();
 		}
-		//printf("무궁화꽃이 피었습니다.");
 	}
 	Sleep(10);
+}
+
+void mugunghwa_ment_clean() {
+	if (tick >= 1200) {
+		gotoxy(N_ROW + 1, 0);
+		printf("                                      ");
+		gotoxy(N_ROW + 1, 0);
+		tick = 0;
+	}
 }
 
 void draw(void) {
