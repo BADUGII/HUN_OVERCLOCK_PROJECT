@@ -59,7 +59,7 @@ bool placable(int row, int col) {
 void display(void) {
 	draw();
 	gotoxy(N_ROW + 3, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
-	mugunghwa_ment();
+	//mugunghwa_ment();
 	print_status();
 }
 
@@ -67,58 +67,65 @@ void display(void) {
 int mugunghwa_ment_count = 0;
 
 void mugunghwa_ment() {
-	int tick = 0;
 	//mugunghwa_ment_flag = 1; //무궁화 멘트 플래그 실행 되고 있을때 움직여도 괜찮음. 플래그 상태 1 / 0일때 움직이면 죽는걸로 고고
-	while (1) {
-		tick++;
-		//printf("%d\n", tick);
-		if (tick % 100 == 0) {
-			mugunghwa_ment_count = tick / 100;
-			//printf("%d", mugunghwa_ment_count);
-			if (tick / 100 == 1) {
-				printf("무 ");
-			}
-			else if (tick / 100 == 2) {
-				printf("궁 ");
-			}
-			else if (tick / 100 == 3) {
-				printf("화 ");
-			}
-			else if (tick / 100 == 4) {
-				printf("꽃 ");
-			}
-			else if (tick / 100 == 5) {
-				printf("이 ");
-			}
-			else if (tick / 100 == 6) {
-				printf("피 ");
-			}
-			else if (tick / 100 == 7) {
-				printf("었 ");
-			}
-			else if (tick / 100 == 8) {
-				printf("습 ");
-			}
-			else if (tick / 100 == 9) {
-				printf("니 ");
-			}
-			else if (tick / 100 == 10) {
-				printf("다 ");
-			}
-			else if (tick / 100 == 11) {
-				printf(".");
-			}
-			//Sleep(1000);
-			if (tick >= 1200) {
-				gotoxy(N_ROW + 3, 0);
-				printf("                                      "); //지우기
-				gotoxy(N_ROW + 3, 0);
-				tick = 0;
-			}
-			//printf("무궁화꽃이 피었습니다.");
+	//printf("%d\n", tick);
+	if (tick % 100 == 0) {
+		mugunghwa_ment_count = tick / 100;
+		//printf("%d", mugunghwa_ment_count);
+		if (tick / 100 == 1) {
+			gotoxy(N_ROW + 1, 0);
+			printf("무");
 		}
-		Sleep(10);
+		else if (tick / 100 == 2) {
+			gotoxy(N_ROW + 1, 3);
+			printf("궁");
+		}
+		else if (tick / 100 == 3) {
+			gotoxy(N_ROW + 1, 6);
+			printf("화");
+		}
+		else if (tick / 100 == 4) {
+			gotoxy(N_ROW + 1, 9);
+			printf("꽃");
+		}
+		else if (tick / 100 == 5) {
+			gotoxy(N_ROW + 1, 12);
+			printf("이");
+		}
+		else if (tick / 100 == 6) {
+			gotoxy(N_ROW + 1, 15);
+			printf("피");
+		}
+		else if (tick / 100 == 7) {
+			gotoxy(N_ROW + 1, 18);
+			printf("었");
+		}
+		else if (tick / 100 == 8) {
+			gotoxy(N_ROW + 1, 21);
+			printf("습");
+		}
+		else if (tick / 100 == 9) {
+			gotoxy(N_ROW + 1, 24);
+			printf("니");
+		}
+		else if (tick / 100 == 10) {
+			gotoxy(N_ROW + 1, 27);
+			printf("다");
+		}
+		else if (tick / 100 == 11) {
+			gotoxy(N_ROW + 1, 30);
+			printf(".");
+		}
+			//Sleep(1000);
+		if (tick >= 1200) {
+			gotoxy(N_ROW + 1, 0);
+			printf("                                      "); //지우기
+			gotoxy(N_ROW + 1, 0);
+			tick = 0;
+		}
+		//printf("무궁화꽃이 피었습니다.");
 	}
+	Sleep(10);
 }
 
 void draw(void) {

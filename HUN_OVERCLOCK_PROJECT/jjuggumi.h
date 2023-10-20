@@ -11,9 +11,8 @@ int n_player, n_alive;
 int tick;  // 시계
 
 // 미니게임
-void sample(void);
-//void mugunghwa(void);
-//void mugunghwa(void);
+void sample();
+void mugunghwa(void);
 //void nightgame(void);
 //void juldarigi(void);
 //void jebi(void);

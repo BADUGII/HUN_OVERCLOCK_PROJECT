@@ -45,7 +45,7 @@ int main(void) {
 		outro_np();
 		exit(0);
 	}
-	sample();
+	mugunghwa();
 	outro_p();
 	//mugunghwa();	
 	//nightgame();

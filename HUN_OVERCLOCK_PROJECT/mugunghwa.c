@@ -125,11 +125,12 @@ void camera(void) {
 	yh_stop = 0;
 }
 
-void sample(void) {
+void mugunghwa(void) {
 	mugunghwa_init();
 	display();
 	dialog("20232367");
 	while (1) {
+		mugunghwa_ment();
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
 		if (key == K_QUIT) {
@@ -141,7 +142,7 @@ void sample(void) {
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {	
-				camera();
+				//camera();
 				if (yh_stop == 1) {
 					stop_moving = randint(1, 10);
 					if (stop_moving == 1) {
