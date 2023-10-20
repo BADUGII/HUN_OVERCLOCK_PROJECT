@@ -59,21 +59,65 @@ bool placable(int row, int col) {
 void display(void) {
 	draw();
 	gotoxy(N_ROW + 3, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
+	mugunghwa_ment();
 	print_status();
 }
 
-
 //무궁화 꽃이 피었습니다
+int mugunghwa_ment_count = 0;
+
 void mugunghwa_ment() {
-	char mugunghwa_ment_li[50] = "무궁화꽃이피었습니다.";
-	for (int i = 0; i < strlen(mugunghwa_ment_li); i++) {
-		printf("%c", mugunghwa_ment_li[i]);
-		if (i < 6) {
-			Sleep(500 + i * 15); //점점 느리게
+	int tick = 0;
+	//mugunghwa_ment_flag = 1; //무궁화 멘트 플래그 실행 되고 있을때 움직여도 괜찮음. 플래그 상태 1 / 0일때 움직이면 죽는걸로 고고
+	while (1) {
+		tick++;
+		//printf("%d\n", tick);
+		if (tick % 100 == 0) {
+			mugunghwa_ment_count = tick / 100;
+			//printf("%d", mugunghwa_ment_count);
+			if (tick / 100 == 1) {
+				printf("무 ");
+			}
+			else if (tick / 100 == 2) {
+				printf("궁 ");
+			}
+			else if (tick / 100 == 3) {
+				printf("화 ");
+			}
+			else if (tick / 100 == 4) {
+				printf("꽃 ");
+			}
+			else if (tick / 100 == 5) {
+				printf("이 ");
+			}
+			else if (tick / 100 == 6) {
+				printf("피 ");
+			}
+			else if (tick / 100 == 7) {
+				printf("었 ");
+			}
+			else if (tick / 100 == 8) {
+				printf("습 ");
+			}
+			else if (tick / 100 == 9) {
+				printf("니 ");
+			}
+			else if (tick / 100 == 10) {
+				printf("다 ");
+			}
+			else if (tick / 100 == 11) {
+				printf(".");
+			}
+			//Sleep(1000);
+			if (tick >= 1200) {
+				gotoxy(N_ROW + 3, 0);
+				printf("                                      "); //지우기
+				gotoxy(N_ROW + 3, 0);
+				tick = 0;
+			}
+			//printf("무궁화꽃이 피었습니다.");
 		}
-		else {
-			Sleep(250 - i * 10); //점점 빠르게
-		}
+		Sleep(10);
 	}
 }
 
