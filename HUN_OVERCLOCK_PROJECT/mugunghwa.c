@@ -15,10 +15,13 @@ void move_tail(int i, int nx, int ny);
 void camera(void);
 
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
+int yh_camera = 0;
+int yh_stop = 0;
+int stop_moving = 0;
+int x, y;
 
 void mugunghwa_init(void) {
 	map_init(11, 40);
-	int x, y;
 
 	for (int i = 0; i < 3; i++) {
 		x = i+4;
@@ -110,8 +113,17 @@ void move_tail(int player, int nx, int ny) {
 }
 
 void camera(void) {
-	
-
+	if (tick % 3000 == 0) {
+		yh_stop = 1;
+		for (int i = 0; i < 3; i++) {
+			x = i + 4;
+			y = 1;
+			px[i] = x;
+			py[i] = y;
+			back_buf[px[i]][py[i]] = '@';
+		}
+	}
+	yh_stop = 0;
 }
 
 void sample(void) {
@@ -130,7 +142,22 @@ void sample(void) {
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {	
-				move_random(i, -1); //이 부분 move_manual() 부분으로 바꾸고 ()괄호 안에 들어가는 함수를 따로 만드셈 랜덤으로 10퍼센트.
+				camera();
+				if (yh_stop == 1) {
+					stop_moving = randint(1, 10);
+					if (stop_moving == 1) {
+						move_random(i, -1);
+						stop_moving = 0;
+					}
+					if (tick % 3000) {
+						stop_moving = 0;
+						break;
+					}
+					yh_stop = 0;
+				}
+				else {
+					move_random(i, -1); //이 부분 move_manual() 부분으로 바꾸고 ()괄호 안에 들어가는 함수를 따로 만드셈 랜덤으로 10퍼센트.
+				}
 			}
 		}
 		display();
