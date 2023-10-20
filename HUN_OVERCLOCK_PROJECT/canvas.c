@@ -9,7 +9,8 @@
 void draw(void);
 void print_status(void);
 void intro();
-void outro();
+void outro_p();
+void outro_np();
 void mugunghwa_ment();
 
 // (zero-base) row행, col열로 커서 이동
@@ -202,8 +203,8 @@ void intro() {
 	Sleep(500);
 }
 
-//outro틀
-void outro() {
+//일반적인 outro.
+void outro_p() {
 	system("cls");
 	//5초 안으로 끝내기
 	//Sleep(5000)
@@ -250,6 +251,73 @@ void outro() {
 	printf("#                        #                                    #                                             #          #\n");
 	Sleep(150);
 	printf("#            *           #               *                    #                        *                               #\n");
+	Sleep(150);
+	printf("#                    *                                                                                     *           #\n");
+	Sleep(150);
+	printf("#    *                                        *              *                         *               *    *          #\n");
+	Sleep(150);
+	printf("#                               *                                       *                                              #\n");
+	Sleep(150);
+	printf("#      *                                                                                                               #\n");
+	Sleep(150);
+	printf("#                      *                                            *              *               *           *       #\n");
+	Sleep(150);
+	printf("#    *                                                                                                *                #\n");
+	Sleep(150);
+	printf("#                                           *                                                                          #\n");
+	Sleep(150);
+	printf("########################################################################################################################");
+	Sleep(500);
+}
+
+//플레이어가 너무 많을때 쓰이는 아웃트로
+void outro_np() {
+	system("cls");
+	//5초 안으로 끝내기
+	//Sleep(5000)
+	printf("########################################################################################################################\n");
+	Sleep(150);
+	printf("#     *                                                                                                                #\n");
+	Sleep(150);
+	printf("#          *       *                                      *                        *                        *          #\n");
+	Sleep(150);
+	printf("#                                        *                *              *                      *                *     #\n");
+	Sleep(150);
+	printf("#                       *                                                                           *          *       #\n");
+	Sleep(150);
+	printf("#        *                                       *                           *                                         #\n");
+	Sleep(150);
+	printf("#                                   *                                                         *               *        #\n");
+	Sleep(150); 
+	printf("#                  *            *                                   *                                                  #\n");
+	Sleep(150);
+	printf("#                                                                                            *                         #\n");
+	Sleep(150);                       
+	printf("#                         *                            *                                           *                   #\n");
+	Sleep(150);
+	printf("#         *                                *                              *                                            #\n");
+	Sleep(150);
+	printf("#                       *          ##################################                *                     *           #\n");
+	Sleep(150);
+	printf("#            *         *           #  -플레이어 수가 너무 많습니다- #      *                                           #\n");
+	Sleep(150);
+	printf("#           *                      ##################################               *            *                     #\n");
+	Sleep(150);
+	printf("#          *      *                         *                                                                          #\n");
+	Sleep(150);
+	printf("#                                         *                       *                                  *                 #\n");
+	Sleep(150);
+	printf("#                                  *              *                                   *                 *              #\n");
+	Sleep(150);
+	printf("#      *            *                                                        *                                         #\n");
+	Sleep(150);
+	printf("#                           *                                      *                           *                 *     #\n");
+	Sleep(150);
+	printf("#        *                        *                                                                          *         #\n");
+	Sleep(150);
+	printf("#                 *                             *                                       *                              #\n");
+	Sleep(150);
+	printf("#                                                                        *                                             #\n");
 	Sleep(150);
 	printf("#                    *                                                                                     *           #\n");
 	Sleep(150);

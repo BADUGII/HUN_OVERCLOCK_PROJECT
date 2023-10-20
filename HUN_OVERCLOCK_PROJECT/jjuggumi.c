@@ -16,25 +16,38 @@ int randint(int low, int high) {
 	return rnum;
 }
 
+n_player_trigger = 0;
+
 int jjuggumi_init(void) {
 	system("cls");
 	srand((unsigned int)time(NULL));
 
-	printf("플레이어 수: ");
+	printf("무궁화 게임 최대 플레이어 : 9\n");
+	printf("플레이어 수 : ");
 	scanf_s("%d", &n_player);
-
+	if (n_player <= 9) {
+		n_player_trigger = 0;
+	}
+	else {
+		n_player_trigger =1;
+	}
 	n_alive = n_player;
 	for (int i = 0; i < n_player; i++) {
 		player[i] = true;
 	}
+	system("cls");
 	return 0;
 }
 
 int main(void) {
 	intro();
 	jjuggumi_init();
+	if (n_player_trigger == 1) {
+		outro_np();
+		exit(0);
+	}
 	sample();
-	outro();
+	outro_p();
 	//mugunghwa();	
 	//nightgame();
 	//juldarigi();

@@ -36,5 +36,7 @@ void printxy(char ch, int row, int col);
 
 void intro();
 
-void outro();
+void outro_p();
+
+void outro_np();
 #endif
