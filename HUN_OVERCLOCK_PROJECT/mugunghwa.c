@@ -19,13 +19,15 @@ int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이
 void mugunghwa_init(void) {
 	map_init(11, 40);
 	int x, y;
+
 	for (int i = 0; i < 3; i++) {
 		x = i+4;
 		y = 1;
 		px[i] = x;
 		py[i] = y;
 		back_buf[px[i]][py[i]] = '#';
-	}
+	} // 영희 생성 (고정)
+
 	for (int i = 0; i < n_player; i++) {
 		// 같은 자리가 나오면 다시 생성
 		do {
