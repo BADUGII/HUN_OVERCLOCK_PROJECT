@@ -73,47 +73,47 @@ void mugunghwa_ment() {
 	if (yh_stop == 0 && tick % 100 == 0) {
 		mugunghwa_ment_count = tick / 100;
 		//printf("%d", mugunghwa_ment_count);
-		if (tick / 100 == 1) {
+		if (tick == 100) {
 			gotoxy(N_ROW + 1, 0);
 			printf("¹«");
 		}
-		else if (tick / 100 == 2) {
+		else if (tick == 200) {
 			gotoxy(N_ROW + 1, 3);
 			printf("±Ã");
 		}
-		else if (tick / 100 == 3) {
+		else if (tick == 400) {
 			gotoxy(N_ROW + 1, 6);
 			printf("È­");
 		}
-		else if (tick / 100 == 4) {
+		else if (tick == 500) {
 			gotoxy(N_ROW + 1, 9);
 			printf("²É");
 		}
-		else if (tick / 100 == 5) {
+		else if (tick == 700) {
 			gotoxy(N_ROW + 1, 12);
 			printf("ÀÌ");
 		}
-		else if (tick / 100 == 6) {
+		else if (tick == 1000) {
 			gotoxy(N_ROW + 1, 15);
 			printf("ÇÇ");
 		}
-		else if (tick / 100 == 7) {
+		else if (tick == 1200) {
 			gotoxy(N_ROW + 1, 18);
 			printf("¾ú");
 		}
-		else if (tick / 100 == 8) {
+		else if (tick == 1400) {
 			gotoxy(N_ROW + 1, 21);
 			printf("½À");
 		}
-		else if (tick / 100 == 9) {
+		else if (tick == 1500) {
 			gotoxy(N_ROW + 1, 24);
 			printf("´Ï");
 		}
-		else if (tick / 100 == 10) {
+		else if (tick == 1600) {
 			gotoxy(N_ROW + 1, 27);
 			printf("´Ù");
 		}
-		else if (tick / 100 == 11) {
+		else if (tick == 1700) {
 			gotoxy(N_ROW + 1, 30);
 			printf(".");
 			yh_stop = true;
@@ -126,7 +126,7 @@ void mugunghwa_ment() {
 }
 
 void mugunghwa_ment_clean() {
-	if (tick >= 1200) {
+	if (tick >= 1700) {
 		gotoxy(N_ROW + 1, 0);
 		printf("                                      ");
 		gotoxy(N_ROW + 1, 0);

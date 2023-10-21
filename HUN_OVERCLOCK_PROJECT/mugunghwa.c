@@ -19,8 +19,28 @@ int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이
 int yh_camera = 0;
 int stop_moving = 0;
 int x, y;
+int pass_player;
+int clear_player;
 
 int nx = 0, ny = 0;
+
+bool hide(int x, int y) {
+	for (int i = 0; i < n_player; i++) {
+		if (px[i] == x && py[i] < y) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool pass(int x, int y) {
+	for (int i = 0; i < n_player; i++) {
+		if (py[i] == 1) {
+			return true;
+		}
+	}
+	return false;
+}
 
 void mugunghwa_init(void) {
 	map_init(13, 40);
@@ -127,6 +147,17 @@ void mugunghwa(void) {
 	dialog(" -준비- ");
 	int a_flag = false;
 	while (1) {
+		clear_player = 0;
+		for (int i = 0; i < n_player; i++) {
+			pass_player = pass(px[i], py[i]);
+		}
+		for (int i = 0; i < n_player; i++) {
+			if (py[i] == 1) {
+				back_buf[px[i]][py[i]] = ' ';
+				player[i] = true;
+				clear_player++;
+			}
+		}
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
 		if (key == K_QUIT) {
@@ -150,7 +181,7 @@ void mugunghwa(void) {
 				if (player[i] == 0) {
 					continue;
 				}
-				if (!randint(0,9)) {
+				if (!pass_player && !randint(0,9) && !hide(px[i], py[i])) {
 					move_random(i, -1);
 					stop_moving = 0;
 					back_buf[px[i]][py[i]] = ' ';
@@ -169,7 +200,7 @@ void mugunghwa(void) {
 					else if (key != K_UNDEFINED) {
 						move_manual(key);
 						draw();
-						a_flag = 1;
+						a_flag = true;
 					}
 				}
 				if (stop_tick / 3000 == 1) {
@@ -182,7 +213,7 @@ void mugunghwa(void) {
 				}
 			}
 			yh_stop = false;
-			if (a_flag) {
+			if (a_flag && !hide(px[0], py[0]) && !pass_player) {
 				back_buf[px[0]][py[0]] = ' ';
 				player[0] = false;
 				n_alive = n_alive - 1;
@@ -193,6 +224,14 @@ void mugunghwa(void) {
 		}
 		camera_off();
 		display();
+		if (n_alive == 1) {
+			outro_p();
+			exit(0);
+		}
+		if (n_alive == clear_player) {
+			outro_p();
+			exit(0);
+		}
 		Sleep(10);
 		tick += 10;
 	}
