@@ -68,7 +68,6 @@ void display(void) {
 int mugunghwa_ment_count = 0;
 
 void mugunghwa_ment() {
-	stop_tick = 0;
 	//mugunghwa_ment_flag = 1; //무궁화 멘트 플래그 실행 되고 있을때 움직여도 괜찮음. 플래그 상태 1 / 0일때 움직이면 죽는걸로 고고
 	//printf("%d\n", tick);
 	if (yh_stop == 0 && tick % 100 == 0) {

@@ -113,20 +113,14 @@ void move_tail(int player, int nx, int ny) {
 
 void camera_on(void) {
 	for (int i = 0; i < 3; i++) {
-		x = i + 5;
-		y = 1;
-		px[i] = x;
-		py[i] = y;
-		back_buf[px[i]][py[i]] = '@';
+		gotoxy(i + 5, 1);
+		printf("@");
 	}
 }
 void camera_off(void) {
 	for (int i = 0; i < 3; i++) {
-		x = i + 5;
-		y = 1;
-		px[i] = x;
-		py[i] = y;
-		back_buf[px[i]][py[i]] = '#';
+		gotoxy(i + 5, 1);
+		printf("#");
 	}
 }
 
@@ -143,24 +137,28 @@ void mugunghwa(void) {
 		else if (key != K_UNDEFINED) {
 			move_manual(key);
 		}
-		stop_tick = 0;
 		mugunghwa_ment();
+		stop_tick = 0;
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {
 				if (yh_stop == 1) {
+					camera_on();
 					stop_moving = randint(1, 10);
 					if (stop_moving == 1) {
 						move_random(i, -1);
-						yh_stop = 0;
+						// 탈락
 					}
 					else if (stop_moving != 1) {
-						for (int j = 0; j < 2000; j += 10) {
+						while (1) {
+							if (stop_tick % 3000 == 0) {
+								stop_tick = 0;
+								break;
+							}
 							Sleep(10);
+							stop_tick += 10;
 						}
-						stop_moving = 0;
 						yh_stop = 0;
-						break;
 					}
 				}
 				else {
@@ -168,6 +166,7 @@ void mugunghwa(void) {
 				}
 			}
 		}
+		camera_off();
 		display();
 		Sleep(10);
 		tick += 10;
