@@ -43,7 +43,6 @@ void mugunghwa_init(void) {
 	}
 	tick = 0;
 }
-
 void move_manual(key_t key) {
 	// 각 방향으로 움직일 때 x, y값 delta
 	static int dx[4] = { -1, 1, 0, 0 };
@@ -68,14 +67,12 @@ void move_manual(key_t key) {
 
 	move_tail(0, nx, ny);
 }
-
 // 0 <= dir < 4가 아니면 랜덤
 void move_random(int player, int dir) {
 	int p = player;  // 이름이 길어서...
 	int nx = 0, ny = 0;  // 움직여서 다음에 놓일 자리
 	int random_xy = 0;
 	int percent = 0;
-
 	// 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)
 	do {
 		percent = randint(1, 10);
@@ -101,7 +98,6 @@ void move_random(int player, int dir) {
 
 	move_tail(p, nx, ny);
 }
-
 // back_buf[][]에 기록
 void move_tail(int player, int nx, int ny) {
 	int p = player;  // 이름이 길어서...
@@ -110,7 +106,6 @@ void move_tail(int player, int nx, int ny) {
 	px[p] = nx;
 	py[p] = ny;
 }
-
 void camera_on(void) {
 	for (int i = 0; i < 3; i++) {
 		gotoxy(i + 5, 1);
@@ -123,7 +118,6 @@ void camera_off(void) {
 		printf("#");
 	}
 }
-
 void mugunghwa(void) {
 	mugunghwa_init();
 	display();
@@ -138,31 +132,30 @@ void mugunghwa(void) {
 			move_manual(key);
 		}
 		mugunghwa_ment();
-		stop_tick = 0;
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {
-				if (yh_stop == 1) {
-					camera_on();
-					stop_moving = randint(1, 10);
-					if (stop_moving == 1) {
-						move_random(i, -1);
-						// 탈락
-					}
-					else if (stop_moving != 1) {
-						while (1) {
-							if (stop_tick % 3000 == 0) {
-								stop_tick = 0;
-								break;
-							}
+				move_random(i, -1);
+			}
+			if (yh_stop == true) {
+				camera_on();
+				stop_moving = randint(1, 10);
+				if (stop_moving == 1) {
+					move_random(i, -1);
+				}
+				else if (stop_moving != 1) {
+					while (1) {
+						if (stop_tick / 3000 == 1) {
+							stop_tick = 0;
+							break;
+						}
+						else {
 							Sleep(10);
 							stop_tick += 10;
 						}
-						yh_stop = 0;
 					}
-				}
-				else {
-					move_random(i, -1);
+					yh_stop = false;
+					camera_off();
 				}
 			}
 		}

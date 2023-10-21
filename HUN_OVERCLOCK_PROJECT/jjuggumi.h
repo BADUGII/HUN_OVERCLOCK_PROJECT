@@ -10,7 +10,7 @@ bool player[PLAYER_MAX];  // 기본값 true, 탈락하면 false
 int n_player, n_alive;
 int tick;  // 시계
 int stop_tick;
-int yh_stop;
+bool yh_stop;
 
 // 미니게임
 void sample();

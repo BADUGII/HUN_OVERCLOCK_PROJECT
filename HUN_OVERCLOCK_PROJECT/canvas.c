@@ -116,10 +116,9 @@ void mugunghwa_ment() {
 		else if (tick / 100 == 11) {
 			gotoxy(N_ROW + 1, 30);
 			printf(".");
-			yh_stop = 1;
+			yh_stop = true;
 		}
-
-		if (yh_stop == 0) {
+		if (yh_stop == false) {
 			mugunghwa_ment_clean();
 		}
 	}
