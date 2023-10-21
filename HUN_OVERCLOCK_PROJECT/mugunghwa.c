@@ -20,6 +20,8 @@ int yh_camera = 0;
 int stop_moving = 0;
 int x, y;
 
+int nx = 0, ny = 0;
+
 void mugunghwa_init(void) {
 	map_init(13, 40);
 	for (int i = 0; i < 3; i++) {
@@ -38,7 +40,7 @@ void mugunghwa_init(void) {
 		} while (!placable(x, y));
 		px[i] = x;
 		py[i] = y;
-		period[i] = randint(30, 50);
+		period[i] = randint(40, 60);
 		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
 	}
 	tick = 0;
@@ -132,32 +134,39 @@ void mugunghwa(void) {
 			move_manual(key);
 		}
 		mugunghwa_ment();
+		//printf("%d %d %d", player, nx, ny);
 		// player 1 부터는 랜덤으로 움직임(8방향)
 		for (int i = 1; i < n_player; i++) {
 			if (tick % period[i] == 0) {
 				move_random(i, -1);
 			}
-			if (yh_stop == true) {
-				camera_on();
-				stop_moving = randint(1, 10);
-				if (stop_moving == 1) {
-					move_random(i, -1);
-				}
-				else if (stop_moving != 1) {
-					while (1) {
-						if (stop_tick / 3000 == 1) {
-							stop_tick = 0;
-							break;
-						}
-						else {
-							Sleep(10);
-							stop_tick += 10;
-						}
+		}
+		if (yh_stop == true) {
+			camera_on();
+			stop_moving = randint(1, 10); //10퍼센트
+			// stop_moving = 1;
+			if (stop_moving == 1) {
+				for (int i = 1; i < n_player; i++) {
+					if (tick % period[i] == 0) {
+						move_random(i, -1);
 					}
-					yh_stop = false;
-					camera_off();
 				}
 			}
+			else if (stop_moving != 1) {
+				while (1) {
+					if (stop_tick / 3000 == 1) {
+						stop_tick = 0;
+						break;
+					}
+					else {
+						Sleep(10);
+						stop_tick += 10;
+					}
+				}
+				yh_stop = false;
+				camera_off();
+			}
+		}
 		}
 		camera_off();
 		display();
