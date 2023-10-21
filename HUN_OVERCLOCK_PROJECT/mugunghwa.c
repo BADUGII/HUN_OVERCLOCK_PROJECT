@@ -120,10 +120,12 @@ void camera_off(void) {
 		printf("#");
 	}
 }
+
 void mugunghwa(void) {
 	mugunghwa_init();
 	display();
-	dialog("20232367");
+	dialog(" -준비- ");
+	int a_flag = false;
 	while (1) {
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();
@@ -144,29 +146,50 @@ void mugunghwa(void) {
 		if (yh_stop == true) {
 			camera_on();
 			stop_moving = randint(1, 10); //10퍼센트
-			// stop_moving = 1;
-			if (stop_moving == 1) {
-				for (int i = 1; i < n_player; i++) {
-					if (tick % period[i] == 0) {
-						move_random(i, -1);
-					}
+			for (int i = 1; i < n_player; i++) {
+				if (player[i] == 0) {
+					continue;
+				}
+				if (!randint(0,9)) {
+					move_random(i, -1);
+					stop_moving = 0;
+					back_buf[px[i]][py[i]] = ' ';
+					player[i] = false;
+					n_alive = n_alive - 1;
+					char dialog_empty[100] = { (char)i + '0',' ','p','l','a','y','e','r',' ','d','i','e', NULL};
+					dialog(dialog_empty);
 				}
 			}
-			else if (stop_moving != 1) {
-				while (1) {
-					if (stop_tick / 3000 == 1) {
-						stop_tick = 0;
+			while (1) {
+				key_t key = get_key();
+				if (player[0] == 1) {
+					if (key == K_QUIT) {
 						break;
 					}
-					else {
-						Sleep(10);
-						stop_tick += 10;
+					else if (key != K_UNDEFINED) {
+						move_manual(key);
+						draw();
+						a_flag = 1;
 					}
 				}
-				yh_stop = false;
-				camera_off();
+				if (stop_tick / 3000 == 1) {
+					stop_tick = 0;
+					break;
+				}
+				else {
+					Sleep(10);
+					stop_tick += 10;
+				}
 			}
-		}
+			yh_stop = false;
+			if (a_flag) {
+				back_buf[px[0]][py[0]] = ' ';
+				player[0] = false;
+				n_alive = n_alive - 1;
+				dialog("0 player die");
+			}
+			a_flag = false;
+			camera_off();
 		}
 		camera_off();
 		display();
