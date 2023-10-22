@@ -213,7 +213,8 @@ void mugunghwa(void) {
 				}
 			}
 			yh_stop = false;
-			if (a_flag && !hide(px[0], py[0]) && !pass_player) {
+			//!hide(px[i], py[i])
+			if (a_flag && !hide(px[0], py[0])) {
 				back_buf[px[0]][py[0]] = ' ';
 				player[0] = false;
 				n_alive = n_alive - 1;
