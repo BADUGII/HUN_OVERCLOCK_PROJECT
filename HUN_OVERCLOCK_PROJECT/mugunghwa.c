@@ -213,7 +213,7 @@ void mugunghwa(void) {
 				}
 			}
 			yh_stop = false;
-			if (a_flag && !hide(px[0], py[0]) && !pass_player) {
+			if (a_flag && !pass_player) {
 				back_buf[px[0]][py[0]] = ' ';
 				player[0] = false;
 				n_alive = n_alive - 1;
@@ -225,7 +225,12 @@ void mugunghwa(void) {
 		camera_off();
 		display();
 		if (n_alive == 1) {
-			outro_p();
+			for (int i = 0; i < n_player; i++) {
+				if (player[i] == true) {
+					winner_player = i;
+				}
+			}
+			winner_outro_p();
 			exit(0);
 		}
 		if (n_alive == clear_player) {

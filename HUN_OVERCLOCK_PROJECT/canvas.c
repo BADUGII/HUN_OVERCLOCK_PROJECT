@@ -11,6 +11,7 @@ void print_status(void);
 void intro();
 void outro_p();
 void outro_np();
+void winner_outro_p();
 void mugunghwa_ment();
 void mugunghwa_ment_clean();
 
@@ -288,6 +289,42 @@ void outro_np() {
 	printf("#           *                               ##################################      *            *                     #\n"); Sleep(150);
 	printf("#          *      *                         #  -플레이어 수가 너무 많습니다- #    *                                    #\n"); Sleep(150);
 	printf("#                      *                    ##################################       *               *                 #\n"); Sleep(150);
+	printf("#                                  *              *                                   *                 *              #\n"); Sleep(150);
+	printf("#      *            *                                                        *                                         #\n"); Sleep(150);
+	printf("#                           *                                      *                           *                 *     #\n"); Sleep(150);
+	printf("#        *                        *                                                                          *         #\n"); Sleep(150);
+	printf("#                 *                             *                                       *                              #\n"); Sleep(150);
+	printf("#                                                                        *                                             #\n"); Sleep(150);
+	printf("#                    *                                                                                     *           #\n"); Sleep(150);
+	printf("#    *                                        *              *                         *               *    *          #\n"); Sleep(150);
+	printf("#                               *                                       *                                              #\n"); Sleep(150);
+	printf("#      *                                                                                                               #\n"); Sleep(150);
+	printf("#                      *                                            *              *               *           *       #\n"); Sleep(150);
+	printf("#    *                                                                                                *                #\n"); Sleep(150);
+	printf("#                                           *                                                                          #\n"); Sleep(150);
+	printf("########################################################################################################################"); Sleep(500);
+}
+
+void winner_outro_p() {
+	system("cls");
+	//5초 안으로 끝내기
+	//Sleep(5000)
+	printf("########################################################################################################################\n"); Sleep(150);
+	printf("#     *                                                                                                                #\n"); Sleep(150);
+	printf("#          *       *                                      *                        *                        *          #\n"); Sleep(150);
+	printf("#                                        *                *              *                      *                *     #\n"); Sleep(150);
+	printf("#                       *                                                                           *          *       #\n"); Sleep(150);
+	printf("#        *                                       *                           *                                         #\n"); Sleep(150);
+	printf("#                                   *                                                         *               *        #\n"); Sleep(150);
+	printf("#                  *            *                                   *                                                  #\n"); Sleep(150);
+	printf("#                                                                                            *                         #\n"); Sleep(150);
+	printf("#                         *                            *                                           *                   #\n"); Sleep(150);
+	printf("#         *                                *                              *                                            #\n"); Sleep(150);
+	printf("#                       *                                                            *                     *           #\n"); Sleep(150);
+	printf("#            *         *                                                   *                                           #\n"); Sleep(150);
+	printf("#           *                           ###########################################              *                     #\n"); Sleep(150);
+	printf("#          *      *                     #     게임 종료 우승자는 %d번 플레이어     #                                    #\n", winner_player); Sleep(150);
+	printf("#                      *                ###########################################                  *                 #\n"); Sleep(150);
 	printf("#                                  *              *                                   *                 *              #\n"); Sleep(150);
 	printf("#      *            *                                                        *                                         #\n"); Sleep(150);
 	printf("#                           *                                      *                           *                 *     #\n"); Sleep(150);
